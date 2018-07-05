@@ -11,7 +11,7 @@ export default class Poll extends Component {
       render() {
         return (
           <View>
-            <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
+            <Button title="Sign out" onPress={this._signOutAsync} />
             <Text style={styles.text}>Polls</Text>
           </View>
         );

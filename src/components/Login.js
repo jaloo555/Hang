@@ -15,14 +15,18 @@ export default class Login extends Component {
       render() {
         return (
           <View>
-            <Button title="Sign in!" onPress={this._signInAsync} />
+            <Button title="Login" onPress={this._signInAsync} />
+            <Button title="Sign up" onPress={this._signUpAsync} />
           </View>
         );
       }
     
       _signInAsync = async () => {
         await AsyncStorage.setItem('userToken', 'App');
-        console.log(`Navigating to ${AsyncStorage.getItem('userToken')}`)
         this.props.navigation.navigate('App');
       };
+
+      _signUpAsync = () =>  {
+        this.props.navigation.navigate('SignUp');
+      }
 }
