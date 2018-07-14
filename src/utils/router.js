@@ -1,12 +1,18 @@
-import { createStackNavigator, createSwitchNavigator } from "react-navigation";
+import { 
+  createStackNavigator,
+  createSwitchNavigator,
+  createMaterialTopTabNavigator } from "react-navigation";
 import Poll from '../components/Poll'
-import Login from '../components/Login'
-import SignUp from '../components/SignUp'
-import AuthLoading from '../components/AuthLoading'
+import Login from '../components/Auth/Login'
+import SignUp from '../components/Auth/SignUp'
+import AuthLoading from '../components/Auth/AuthLoading'
 
-const AppStack = createStackNavigator({
+const AppStack = createMaterialTopTabNavigator({
     Poll: {
       screen: Poll,
+      navigationOptions: {
+        title: 'Poll',
+      }
     }
 })
   
@@ -22,16 +28,18 @@ const AuthStack = createStackNavigator({
         navigationOptions: {
           title: 'Sign up'
         }
+    },
+    AuthLoading: {
+      screen: AuthLoading,
     }
 })
   
-export default createSwitchNavigator(
+export default RootNavigator = createSwitchNavigator(
   {
-    AuthLoading: AuthLoading,
     App: AppStack,
     Auth: AuthStack
   },
   {
-    initialRouteName: 'AuthLoading',
+    initialRouteName: 'Auth',
   }
 )

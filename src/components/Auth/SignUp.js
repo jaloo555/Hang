@@ -2,14 +2,19 @@ import React, {Component} from 'react'
 import {Text, View, TextInput} from 'react-native'
 import styled from 'styled-components'
 
-const InputText = styled.Text`
+const InputText = styled.TextInput`
     margin: 15px;
     height: 40px;
     border-color: #F0FFFF;
     border-width: 1;
     padding-left: 7;
 `
- 
+
+const SignUpBtn = styled.Button`
+    background: palevioletred;
+    border-radius: 2px;
+    color: white;
+`
 
 export default class SignUp extends Component {
     state = {
@@ -21,7 +26,7 @@ export default class SignUp extends Component {
     render() {
         return (
             <View>
-                <InputText 
+                <InputText
                     onChangeText={username => this.setState({username})}
                     value={this.state.username}
                     placeholder='Username'/>
@@ -36,6 +41,11 @@ export default class SignUp extends Component {
                     value={this.state.password}
                     placeholder='Password'
                     secureTextEntry= {true}/>
+                
+                <SignUpBtn
+                    title='Sign up' 
+                    onPress={()=> {alert('hey')}}
+                />
             </View>
         )
     }
