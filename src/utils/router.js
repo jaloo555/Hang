@@ -1,13 +1,13 @@
 import { 
   createStackNavigator,
   createSwitchNavigator,
-  createMaterialTopTabNavigator } from "react-navigation";
-import Poll from '../components/Poll'
+  createBottomTabNavigator } from "react-navigation";
+import Poll from '../components/Main/Poll'
 import Login from '../components/Auth/Login'
 import SignUp from '../components/Auth/SignUp'
 import AuthLoading from '../components/Auth/AuthLoading'
 
-const AppStack = createMaterialTopTabNavigator({
+const AppStack = createBottomTabNavigator({
     Poll: {
       screen: Poll,
       navigationOptions: {
