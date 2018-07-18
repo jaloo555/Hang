@@ -25,6 +25,7 @@ export default class CardView extends Component {
                 <Text key={item.item.index} style={styles.title}>{item.item.title}</Text>
                 <Text key={item.item.index} style={styles.voterCount}>{item.item.voters.length} UPVOTES</Text>
                 <View style={styles.voterImageContainer}>
+                {/* use image previews and preload */}
                     <Image key={item.item.index} style= {styles.voterImage}/>
                     <Image key={item.item.index} style= {styles.voterImage}/>
                     <Image key={item.item.index} style= {styles.voterImage}/>
@@ -32,7 +33,6 @@ export default class CardView extends Component {
             </View>
             <TouchableOpacity key={item.item.index} style={styles.voteButtonContainer} onPress={()=>alert('yes')}>
                 <Ionicons name="ios-hand-outline" size={32} color="white"/>
-
             </TouchableOpacity>
         </View>
     )  
