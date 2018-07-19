@@ -13,12 +13,14 @@ import {Ionicons} from '@expo/vector-icons'
 const testData = [{
   title: "Mooby's Burger",
   description: "Great place for burgers",
-  voters: [ "James", "Tom","Elizabeth"],
+  members: [ "James", "Tom","Elizabeth"],
+  status: true,
   key: "0"
   }, {
   title: "Jet's Pizza",
   description: "Great place for pizza",
-  voters: ["John", "Beth"],
+  members: ["John", "Beth"],
+  status: false,
   key: "1"
 }]
 
@@ -37,11 +39,7 @@ export default class Events extends Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Button title="Sign out" onPress={this._signOutAsync} />
-          <Text style={styles.text}>Events</Text>
-          <View>
-              <CardView data={testData}/>
-          </View>
+            <CardView data={testData}/>
         </ScrollView>
       </View>
       
@@ -57,7 +55,6 @@ export default class Events extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 40,
     flex: 1
   }
 })

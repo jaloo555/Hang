@@ -21,7 +21,7 @@ export default class Profile extends Component {
 
   _signOutAsync = async () => {
     await AsyncStorage.setItem('userToken', 'Auth');
-    this.props.navigate('Auth')
+    this.props.navigation.navigate('Auth')
   }
 
   render() {

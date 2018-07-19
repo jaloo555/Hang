@@ -18,20 +18,27 @@ export default class CardView extends Component {
 
   _keyExtractor = (item, index) => item.key
 
+  _renderImages = (memberCount) => {
+    let imageArray = []
+    for (var i=0; i< memberCount; i++){
+        imageArray.push(<Image key={i} style={styles.memberImage}/>)
+    }
+    return imageArray
+  }
+
   _renderItem = (item) => {
     return(
         <View key={item.item.index} style={styles.cardContainer} >
             <View style={styles.infoContainer}>
                 <Text key={item.item.index} style={styles.title}>{item.item.title}</Text>
-                <Text key={item.item.index} style={styles.voterCount}>{item.item.voters.length} UPVOTES</Text>
-                <View style={styles.voterImageContainer}>
-                {/* use image previews and preload */}
-                    <Image key={item.item.index} style= {styles.voterImage}/>
-                    <Image key={item.item.index} style= {styles.voterImage}/>
-                    <Image key={item.item.index} style= {styles.voterImage}/>
+                <Text key={item.item.index} style={styles.memberCount}>{item.item.members.length} friends - {item.item.status ? 'Joined' : 'Invited'}</Text>
+                <View key={item.item.index} style={styles.memberImageContainer}>
+                    {/* use image previews and preload */}
+                    {this._renderImages(item.item.index, item.item.members.length)}
+                    {/* and more icon design */}
                 </View>
             </View>
-            <TouchableOpacity key={item.item.index} style={styles.voteButtonContainer} onPress={()=>alert('yes')}>
+            <TouchableOpacity key={item.item.index} style={styles.memberButtonContainer} onPress={()=>alert('yes')}>
                 <Ionicons name="ios-hand-outline" size={32} color="white"/>
             </TouchableOpacity>
         </View>
@@ -81,17 +88,17 @@ const styles = StyleSheet.create({
         shadowColor: 'gray',
 
     },
-    voterCount: {
+    memberCount: {
         fontFamily: 'System',
         marginBottom: 10,
         color: 'gray'
     },
-    voterImageContainer: {
+    memberImageContainer: {
         flexDirection: 'row',
         alignSelf: 'flex-start',
         marginTop: 10,
     },
-    voterImage: {
+    memberImage: {
         height: 30,
         width: 30,
         backgroundColor: 'gray',
@@ -99,7 +106,7 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         marginRight: 8,
     },
-    voteButtonContainer:{
+    memberButtonContainer:{
         height: '100%',
         backgroundColor: 'black',
         marginLeft: 'auto',
