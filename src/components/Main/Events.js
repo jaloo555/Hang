@@ -5,10 +5,10 @@ import {
     ScrollView,
     StyleSheet,
     AsyncStorage,
-    Button
+    Button,
+    FlatList
     } from 'react-native'
 import CardView from './CardView'
-import {Ionicons} from '@expo/vector-icons'
 
 const testData = [{
   title: "Mooby's Burger",
@@ -25,27 +25,27 @@ const testData = [{
 }]
 
 export default class Events extends Component {
-  static navigationOptions = {
-    tabBarIcon: ({ focused, tintColor }) => (
-      <Ionicons
-        name={`ios-home${focused ? '' : '-outline'}`}
-        size={28}
-        color={tintColor}
-      />
-    ),
-  }
-
   render() {
     return (
       <View style={styles.container}>
         <ScrollView>
-            <CardView data={testData}/>
+            <CardView data={testData} onPressNavBtn={this._navBtnOnPress} onPressBtn={this._btnOnPress}/>
         </ScrollView>
-      </View>
-      
+      </View>  
     );
   }
 
+  _navBtnOnPress = (item) => {
+    console.log(`navigating to ${item}`)
+    this.props.navigation.navigate('EventDetail', {
+      event: item
+    })
+  }
+
+  _btnOnPress = () => {
+    alert('UPVOTE')
+  }
+  
   _signOutAsync = async () => {
     await AsyncStorage.setItem('userToken', 'Auth');
     console.log(`Navigating to ${AsyncStorage.getItem('userToken')}`)

@@ -8,13 +8,10 @@ import {
     TouchableOpacity,
     StyleSheet
 } from 'react-native'
+import {withNavigation} from 'react-navigation'
 import Ionicons from '../../../node_modules/@expo/vector-icons/Ionicons';
 
-export default class CardView extends Component {
-
-  constructor(props) {
-      super(props)
-  }
+function CardView (props) {
 
   _keyExtractor = (item, index) => item.key
 
@@ -29,33 +26,29 @@ export default class CardView extends Component {
   _renderItem = (item) => {
     return(
         <View key={item.item.index} style={styles.cardContainer} >
-            <View style={styles.infoContainer}>
+            <TouchableOpacity style={styles.infoContainer} onPress={()=> {props.onPressNavBtn(item)}}>
                 <Text key={item.item.index} style={styles.title}>{item.item.title}</Text>
                 <Text key={item.item.index} style={styles.memberCount}>{item.item.members.length} friends - {item.item.status ? 'Joined' : 'Invited'}</Text>
                 <View key={item.item.index} style={styles.memberImageContainer}>
                     {/* use image previews and preload */}
-                    {this._renderImages(item.item.index, item.item.members.length)}
+                    {_renderImages(item.item.index, item.item.members.length)}
                     {/* and more icon design */}
                 </View>
-            </View>
-            <TouchableOpacity key={item.item.index} style={styles.memberButtonContainer} onPress={()=>alert('yes')}>
+            </TouchableOpacity>
+            <TouchableOpacity key={item.item.index} style={styles.memberButtonContainer} onPress={props.onPressBtn}>
                 <Ionicons name="ios-hand-outline" size={32} color="white"/>
             </TouchableOpacity>
         </View>
     )  
   }
-
-  render() {
     return(
-        <View>
-            <FlatList
-                data={this.props.data}
-                keyExtractor={this._keyExtractor}
-                renderItem={this._renderItem}
-            />
-        </View>
+        <FlatList
+            data={props.data}
+            keyExtractor={_keyExtractor}
+            renderItem={_renderItem}
+        />
     )
-  }
+
 }
 
 const styles = StyleSheet.create({
@@ -123,3 +116,5 @@ const styles = StyleSheet.create({
         fontSize: 26,
     }
 })
+
+export default (CardView)

@@ -25,9 +25,6 @@ const EventStack = createStackNavigator({
   },
   EventDetail: {
     screen: EventDetail,
-    navigationOptions: {
-      title: 'Detail'
-    }
   }
 }, {
   initialRouteName: 'EventsMain'
