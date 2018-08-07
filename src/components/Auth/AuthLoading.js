@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {
       View,
-      AsyncStorage
+      AsyncStorage,
+      ActivityIndicator,
+      StatusBar
   } from 'react-native'
 import {isSignedIn} from '../../utils/auth'
 
@@ -37,7 +39,6 @@ export default class AuthLoading extends Component {
       <View>
         <ActivityIndicator />
         <StatusBar barStyle="default" />
-        {signedIn ? alert('signed in'): alert('nah')}
       </View>
     )
   }

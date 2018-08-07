@@ -99,13 +99,5 @@ const AuthStack = createStackNavigator({
       screen: AuthLoading,
     }
 })
-  
-export default RootNavigator = createSwitchNavigator(
-  {
-    App: AppStack,
-    Auth: AuthStack
-  },
-  {
-    initialRouteName: 'Auth',
-  }
-)
+
+module.exports = {AuthStack, AppStack}
