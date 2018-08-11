@@ -8,29 +8,38 @@ export function onRegister(data, callback) {
   const { email, password } = data
   auth.createUserWithEmailAndPassword(email, password)
       .then((res) => {
-        console.log(res)
+        console.log(`onCreateUser ${res}`)
       }, callback)
       .catch((error) => {
         const {code, message} = error
         console.log(code, message)
-        alert(error)
+        alert(`createuser error: ${error}`)
       })
 }
 
 // signin user
 export function onSignIn(data, callback) {
+  auth.signInWithEmailAndPassword()
+    .then((res) => {
+      console.log(`onSignIn ${res}`)
+    }, callback)
+    .catch((error)=> {
+      const {code, message} = error
+        console.log(code, message)
+        alert(`signin error: ${error}`)
+    })
 }
 
 // signout user
 export function onSignOut(callback) {
   auth.signOut()
     .then((res) => {
-      console.log(res)
+      console.log(`onSignOut ${res}`)
     }, callback)
     .catch((error)=> {
       const {code, message} = error
         console.log(code, message)
-        alert(error)
+        alert(`signOut error: ${error}`)
     })
 }
 
@@ -38,11 +47,11 @@ export function onSignOut(callback) {
 export function onSignInAnonymously(callback) {
   auth.signInAnonymously()
     .then((res) => {
-      console.log(res)
+      console.log(`onAnonSignIn ${res}`)
     }, callback)
     .catch((error)=> {
       const {code, message} = error
         console.log(code, message)
-        alert(error)
+        alert(`anonSignin error: ${error}`)
     })
 }

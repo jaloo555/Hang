@@ -14,7 +14,7 @@ import {onSignInAnonymously, onSignIn} from '../../utils/auth'
 export default class Login extends Component {
   static navigationOptions = {
       title: 'Please sign in',
-  };
+  }
 
   state = {
     email: '',
@@ -24,16 +24,16 @@ export default class Login extends Component {
   }
 
   _signInAsync =  () => {
-    AsyncStorage.setItem('userToken', 'App');
-    this.props.navigation.navigate('App');
-  };
+    AsyncStorage.setItem('userToken', 'App')
+    onSignIn(this.props.navigation.navigate('App'))
+  }
 
   _signUpAsync = () =>  {
-    this.props.navigation.navigate('SignUp');
+    this.props.navigation.navigate('SignUp')
   }
 
   _signInAnonAsync = async () => {
-    AsyncStorage.setItem('userToken', 'App');
+    AsyncStorage.setItem('userToken', 'App')
     onSignInAnonymously(this.props.navigation.navigate('App'))
   }
 

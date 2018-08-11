@@ -6,7 +6,7 @@ export default class Loading extends React.Component {
   componentDidMount() {
     auth.onAuthStateChanged(user => {
       this.props.navigation.navigate(user ? 'AppStack' : 'AuthStack')
-      console.log(user)
+      console.log(`user: ${user}`)
     })
   }
 
