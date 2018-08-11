@@ -13,6 +13,7 @@ import Friends from '../components/Main/Friends'
 import Profile from '../components/Main/Profile'
 import Login from '../components/Auth/Login'
 import SignUp from '../components/Auth/SignUp'
+import Loading from '../components/Auth/Loading'
 import {Ionicons} from '@expo/vector-icons'
 
 const EventStack = createStackNavigator({
@@ -93,7 +94,15 @@ const AuthStack = createStackNavigator({
         navigationOptions: {
           title: 'Sign up'
         }
-    }
+    },
 })
 
-module.exports = {AuthStack, AppStack}
+const MainNav = createSwitchNavigator({
+  Loading,
+  AppStack,
+  AuthStack
+}, {
+  initialRouteName: 'Loading'
+})
+
+module.exports = {MainNav}

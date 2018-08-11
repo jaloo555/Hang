@@ -5,16 +5,44 @@ export const USER_KEY = "auth-demo-key"
 
 // register user
 export function onRegister(data, callback) {
-  const { email, password, username } = data
+  const { email, password } = data
   auth.createUserWithEmailAndPassword(email, password)
-      .then((res) => createUser({ username, uid:res.user.uid }, callback))
-      .catch((error) => callback(false, null, error))
+      .then((res) => {
+        console.log(res)
+      }, callback)
+      .catch((error) => {
+        const {code, message} = error
+        console.log(code, message)
+        alert(error)
+      })
 }
 
-// create the user
-export function createUser(user, callback) {
-  const userRef = database.ref().child('users')
-  userRef.child(user.uid).update({...user})
-    .then(()=> callback(true, user, null))
-    .catch((error) => callback(false,null,{message: error}))
+// signin user
+export function onSignIn(data, callback) {
+}
+
+// signout user
+export function onSignOut(callback) {
+  auth.signOut()
+    .then((res) => {
+      console.log(res)
+    }, callback)
+    .catch((error)=> {
+      const {code, message} = error
+        console.log(code, message)
+        alert(error)
+    })
+}
+
+// signin anonymously - testing method
+export function onSignInAnonymously(callback) {
+  auth.signInAnonymously()
+    .then((res) => {
+      console.log(res)
+    }, callback)
+    .catch((error)=> {
+      const {code, message} = error
+        console.log(code, message)
+        alert(error)
+    })
 }

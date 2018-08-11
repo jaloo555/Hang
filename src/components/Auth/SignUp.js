@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Text, View, TextInput} from 'react-native'
 import styled from 'styled-components'
+import { onRegister } from '../../utils/auth';
 
 const InputText = styled.TextInput`
     margin: 15px;
@@ -18,32 +19,36 @@ const SignUpBtn = styled.Button`
 
 export default class SignUp extends Component {
     state = {
-        username: '',
-        phoneNumber: '',
+        email: '',
+        // phoneNumber: '',
         password: '',
     }
 
     _onPress = () => {
-        alert('hi')
+        console.log(`creating user with credentials: ${this.state}`)
+        const {email,password} = this.state
+        onRegister({email,password}, this.props.navigation.navigate('Login'))
     }
     
     render() {
         return (
             <View>
                 <InputText
-                    onChangeText={username => this.setState({username})}
-                    value={this.state.username}
-                    placeholder='Username'/>
+                    onChangeText={email => this.setState({email})}
+                    value={this.state.email}
+                    autoCapitalize='none'
+                    placeholder='Email'/>
 
-                <InputText 
+                {/* <InputText 
                     onChangeText={phoneNumber => this.setState({phoneNumber})}
                     value={this.state.phoneNumber}
-                    placeholder='Phone number'/>
+                    placeholder='Phone number'/> */}
 
                 <InputText 
                     onChangeText={password => this.setState({password})}
                     value={this.state.password}
                     placeholder='Password'
+                    autoCapitalize='none'
                     secureTextEntry= {true}/>
                 
                 <SignUpBtn

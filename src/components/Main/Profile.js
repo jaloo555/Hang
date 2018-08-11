@@ -7,6 +7,7 @@ import {
   Button
 } from 'react-native'
 import {Ionicons} from '@expo/vector-icons'
+import {onSignOut} from '../../utils/auth'
 
 export default class Profile extends Component {
   static navigationOptions = {
@@ -19,9 +20,9 @@ export default class Profile extends Component {
     ),
   }
 
-  _signOutAsync = async () => {
-    await AsyncStorage.setItem('userToken', 'Auth');
-    this.props.navigation.navigate('Auth')
+  _signOutAsync = () => {
+    AsyncStorage.setItem('userToken', 'Auth');
+    onSignOut(this.props.navigation.navigate('AuthStack'))
   }
 
   render() {
