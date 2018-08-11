@@ -22,6 +22,10 @@ export default class SignUp extends Component {
         phoneNumber: '',
         password: '',
     }
+
+    _onPress = () => {
+        alert('hi')
+    }
     
     render() {
         return (
@@ -44,7 +48,7 @@ export default class SignUp extends Component {
                 
                 <SignUpBtn
                     title='Sign up' 
-                    onPress={()=> {alert('hey')}}
+                    onPress={this._onPress}
                 />
             </View>
         )

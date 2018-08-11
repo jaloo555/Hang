@@ -13,7 +13,6 @@ import Friends from '../components/Main/Friends'
 import Profile from '../components/Main/Profile'
 import Login from '../components/Auth/Login'
 import SignUp from '../components/Auth/SignUp'
-import AuthLoading from '../components/Auth/AuthLoading'
 import {Ionicons} from '@expo/vector-icons'
 
 const EventStack = createStackNavigator({
@@ -94,9 +93,6 @@ const AuthStack = createStackNavigator({
         navigationOptions: {
           title: 'Sign up'
         }
-    },
-    AuthLoading: {
-      screen: AuthLoading,
     }
 })
 

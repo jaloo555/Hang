@@ -1,7 +1,7 @@
 import React from 'react'
 import { StatusBar } from 'react-native'
 import {AuthStack, AppStack} from './src/utils/router'
-import Firebase from './src/utils/firebase'
+import {auth} from './src/utils/firebase'
 
 export default class App extends React.Component {
   state = {
@@ -11,25 +11,14 @@ export default class App extends React.Component {
 
   async componentDidMount() {
     StatusBar.setHidden(true)
-    try {
-      // const user = await
-      this.setState({ user, isLoading: false })
-    } catch (err) {
-      this.setState({ isLoading: false })
-    }
-  }
-
-  async componentWillReceiveProps(nextProps) {
-    try {
-      const user = await Auth.currentAuthenticatedUser()
-      this.setState({ user })
-    } catch (err) {
-      this.setState({ user: {} })
-    }
+    this.setState({
+      //condition to precheck login status
+      isLoading: false
+    })
   }
 
   componentWillUnmount() {
-    this.authSubscription();
+    //dismiss firebase auth check
   }
 
   render() {
@@ -40,11 +29,12 @@ export default class App extends React.Component {
     }
     if (loggedIn) {
       return (
+        <AppStack />
+      )
+    } else{
+      return (
         <AuthStack />
       )
     }
-    return (
-      <AppStack />
-    )
   }
 }
