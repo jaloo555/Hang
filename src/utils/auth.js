@@ -43,6 +43,11 @@ export function onSignOut(callback) {
     })
 }
 
+// getCurrentUser
+export function getUser() {
+  return auth.currentUser
+}
+
 // signin anonymously - testing method
 export function onSignInAnonymously(callback) {
   auth.signInAnonymously()

@@ -7,7 +7,8 @@ import {
   Button
 } from 'react-native'
 import {Ionicons} from '@expo/vector-icons'
-import {onSignOut} from '../../utils/auth'
+import {onSignOut, getUser} from '../../utils/auth'
+import {auth} from '../../utils/firebase'
 
 export default class Profile extends Component {
   static navigationOptions = {
@@ -28,7 +29,7 @@ export default class Profile extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <Text>Hi</Text>
+        <Text>{this.getUser}</Text>
         <Button title="Sign out" onPress={this._signOutAsync} />
       </View>
     )
